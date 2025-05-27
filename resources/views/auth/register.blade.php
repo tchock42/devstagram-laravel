@@ -11,8 +11,8 @@
             <img src="{{ asset('img/registrar.jpg') }}" alt="Imagen de registro de usuarios">
         </div>    
 
-        <div class="md:w-4/12">
-            <form action="{{ route('register') }}" method="POST">
+        <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
+            <form action="{{ route('register') }}" method="POST" novalidate>
                 @csrf
                 <div class="mb-5">          {{-- primer campo --}}
                     <label 
@@ -25,13 +25,14 @@
                         id="name" 
                         name="name" 
                         placeholder="Tu nombre" 
-                        class="border p-3 w-full rounded-lg"
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                        value="{{ old('name') }}"
                     />
-                    {{-- directiva de validación --}}
-                    @error('name')
-                        <p class="bg-red-500 text-white my-2 rounded-lh text-sm text-center">{{ $message}}</p>
+                    @error('name')                  {{-- directiva de validación --}}
+                        <p class="bg-red-500 text-white my-2 p-2 rounded-lg text-sm text-center">{{ $message }}</p>
                     @enderror
                 </div>
+
                 <div class="mb-5">          {{-- segundo campo --}}
                     <label 
                         for="username" 
@@ -43,8 +44,14 @@
                         id="username" 
                         name="username" 
                         placeholder="Tu nombre de usuario" 
-                        class="border p-3 w-full rounded-lg">
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                        value="{{ old('username') }}"
+                    />
+                    @error('username')                  {{-- directiva de validación --}}
+                        <p class="bg-red-500 text-white my-2 p-2 rounded-lg text-sm text-center">{{ $message }}</p>
+                    @enderror
                 </div>
+
                 <div class="mb-5">          {{-- tercer campo --}}
                     <label 
                         for="email" 
@@ -56,8 +63,14 @@
                         id="email" 
                         name="email" 
                         placeholder="Tu correo de registro" 
-                        class="border p-3 w-full rounded-lg">
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                        value="{{ old('email') }}"
+                    >
+                    @error('email')                  {{-- directiva de validación --}}
+                        <p class="bg-red-500 text-white my-2 p-2 rounded-lg text-sm text-center">{{ $message }}</p>
+                    @enderror
                 </div>
+
                 <div class="mb-5">          {{-- cuarto campo --}}
                     <label 
                         for="password" 
@@ -69,8 +82,13 @@
                         id="password" 
                         name="password" 
                         placeholder="Contraseña de registro" 
-                        class="border p-3 w-full rounded-lg">
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                    >
+                    @error('password')                  {{-- directiva de validación --}}
+                        <p class="bg-red-500 text-white my-2 p-2 rounded-lg text-sm text-center">{{ $message }}</p>
+                    @enderror
                 </div>
+
                 <div class="mb-5">          {{-- quinto campo --}}
                     <label 
                         for="password_confirmation" 
@@ -82,7 +100,8 @@
                         id="password_confirmation" 
                         name="password_confirmation" 
                         placeholder="Repite la contraseña" 
-                        class="border p-3 w-full rounded-lg">
+                        class="border p-3 w-full rounded-lg"
+                    >
                 </div>
                 <input 
                     type="submit"
