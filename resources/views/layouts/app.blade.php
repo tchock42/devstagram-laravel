@@ -16,13 +16,16 @@
         @else
             {{-- aqui venía css de laravel pero lo borré --}}
         @endif
+
+        @livewireStyles
     </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
 
             <div class="container mx-auto flex justify-between items-center">
-                <h1 class="text-3xl font-black">Devstagram</h1>
-
+                <a href="{{ route("home") }}">
+                    <h1 class="text-3xl font-black">Devstagram</h1>
+                </a>
                 @auth                                       {{-- directiva para comprobar que el usuario está autenticado --}}
                     <nav class="flex gap-2 items-center">
                         <a 
@@ -55,12 +58,12 @@
 
                 @guest                                          {{-- directiva de que el usuario no está autenticado --}}
                     <nav class="flex gap-2 items-center">
-                    <a href="/login" class="font-bold uppercase text-gray-600 text-sm">
-                        Login
-                    </a>
-                    <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600 text-sm">
-                        Crear Cuenta
-                    </a>
+                        <a href="{{ route('login') }}" class="font-bold uppercase text-gray-600 text-sm">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600 text-sm">
+                            Crear Cuenta
+                        </a>
                 </nav>
                 @endguest
                 
@@ -77,5 +80,6 @@
         <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
             Devstagram - Todos los derechos reservados @php echo date('Y') @endphp
         </footer>
+        @livewireScripts
     </body>
 </html>

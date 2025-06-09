@@ -20,7 +20,7 @@
         </div>
 
         <div class="md:w-1/2 p-10 bg-white rounded-lg shadow-xl mt-10 md:mt-0">
-            <form action="{{ route('register') }}" method="POST" novalidate>
+            <form action="{{ route('post.store') }}" method="POST" novalidate>
                 @csrf
                 <div class="mb-5">          {{-- primer campo --}}
                     <label 
@@ -48,13 +48,25 @@
                         Descripción
                     </label>
                     <textarea 
-                        id="descriocion" 
+                        id="descripcion" 
                         name="descripcion" 
                         placeholder="Descripción de la publicación" 
                         class="border p-3 w-full rounded-lg @error('descripcion') border-red-500 @enderror"  {{-- clases para el estado de error --}}
-                    >{{ old('titulo') }}</textarea>
+                    >{{ old('descripcion') }}</textarea>
 
                     @error('descripcion')                  {{-- directiva de validación --}}
+                        <p class="bg-red-500 text-white my-2 p-2 rounded-lg text-sm text-center">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- input hidden para imagen --}}
+                <div class="mb-5">
+                    <input 
+                        type="hidden"
+                        name="imagen"
+                        value="{{ old('imagen') }}" {{-- guarda la referencia de la imagen agregada al dropzone --}}
+                    />
+                    @error('imagen')                  {{-- directiva de validación --}}
                         <p class="bg-red-500 text-white my-2 p-2 rounded-lg text-sm text-center">{{ $message }}</p>
                     @enderror
                 </div>
@@ -63,7 +75,7 @@
                     type="submit"
                     value="Crear Publicación"
                     class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg text-center"
-                >
+                />
             </form>
         </div>
     </div>

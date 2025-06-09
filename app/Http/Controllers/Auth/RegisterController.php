@@ -49,7 +49,7 @@ class RegisterController extends Controller
             $request->session()->regenerate();
 
             // redireccionar
-            return redirect()->route('posts.index');  // el argumento de ruta siempre se debe colocar el alias
+            return redirect()->route('posts.index', auth()->user()->username)->with('aviso', 'Cuenta creada correctamente');  // el argumento de ruta siempre se debe colocar el alias
         }
         // si no se autentica el usuario
         return back()->withErrors([

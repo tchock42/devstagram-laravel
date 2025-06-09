@@ -5,5 +5,5 @@
 @endsection
 
 @section('contenido')
-    Contenido de esta página
+    <x-listar-post :posts="$posts" />   {{-- lista losposts usando el componente de Laravel --}}
 @endsection
